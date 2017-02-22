@@ -1,0 +1,35 @@
+<!DOCTYPE tiles-definitions PUBLIC  
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"  
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+	<definition name="Home" template="/WEB-INF/common/apptemplate.jsp"> 
+		<put-attribute name="PageTitle" value="Home"/> 
+		<put-attribute name="headerMenu" value="/WEB-INF/common/headermenu.jsp"/>
+		<put-attribute name="content" value="/WEB-INF/onlinefeepayment/home.jsp"/> 
+	</definition>
+	
+	<definition name="PaymentMonth" extends="Home"> 
+		<put-attribute name="PageTitle" value="Payment Month"/> 
+		<put-attribute name="content" value="/WEB-INF/onlinefeepayment/payment-month.jsp"/> 
+	</definition>
+	
+	<definition name="StudentDetails" extends="Home"> 
+		<put-attribute name="PageTitle" value="Student Details"/> 
+		<put-attribute name="content" value="/WEB-INF/onlinefeepayment/student.jsp"/> 
+	</definition>
+	
+	<definition name="StudentFees" extends="Home"> 
+		<put-attribute name="PageTitle" value="Student Fees"/> 
+		<put-attribute name="content" value="/WEB-INF/onlinefeepayment/student-fee.jsp"/> 
+	</definition>
+	
+	<definition name="PaymentType" extends="Home"> 
+		<put-attribute name="PageTitle" value="Payment Type"/> 
+		<put-attribute name="content" value="/WEB-INF/onlinefeepayment/payment-type.jsp"/> 
+	</definition>
+	
+	<definition name="PaymentVerify" extends="Home"> 
+		<put-attribute name="PageTitle" value="Payment Verified"/> 
+		<put-attribute name="content" value="/WEB-INF/onlinefeepayment/payment-verify.jsp"/> 
+	</definition>
+</tiles-definitions>
