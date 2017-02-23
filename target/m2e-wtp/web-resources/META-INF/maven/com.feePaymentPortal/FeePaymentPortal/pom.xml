@@ -154,7 +154,6 @@
 		    <artifactId>hibernate-entitymanager</artifactId>
 		    <version>5.0.2.Final</version>
 		</dependency>
-		
 		<!-- Apache Tiles -->
         <dependency>
             <groupId>org.apache.tiles</groupId>
