@@ -17,9 +17,9 @@
 	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 		<property name="basenames">
 			<list>
-				<value>/WEB-INF/I18n/messages</value>
-				<value>/WEB-INF/I18n/uiLabels</value>
-				<value>/WEB-INF/I18n/giksAppConfig</value>
+				<value>classpath:i18n/messages</value>
+				<value>classpath:i18n/uiLabels</value>
+				<value>classpath:i18n/giksAppConfig</value>
 			</list>
 		</property>
 	</bean>

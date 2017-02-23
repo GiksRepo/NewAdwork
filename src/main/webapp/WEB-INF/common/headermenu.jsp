@@ -16,7 +16,7 @@
 			<li <c:if test="${curl eq 'studentDetails' }"> class="active"</c:if>>
 				<a href="${studentDetails }" title="Student Data">
 					<span class="round-tabs two">
-						<i class="glyphicon glyphicon-gift glyphicon-menu"></i>
+						<i class="glyphicon glyphicon-user glyphicon-menu" style="color:#4386FC"></i>
 					</span> 
 				</a>
 			</li>
@@ -25,7 +25,7 @@
 			<li <c:if test="${curl eq 'paymentMonth' }"> class="active"</c:if>>
 				<a href="${paymentMonth }" title="Select Month">
 					<span class="round-tabs three">
-						<i class="glyphicon glyphicon-user glyphicon-menu"></i>
+						<i class="glyphicon glyphicon-calendar glyphicon-menu"></i>
 					</span> 
 				</a>
 			</li>
@@ -34,16 +34,16 @@
 			<li <c:if test="${curl eq 'studentFees' }"> class="active"</c:if>>
 				<a href="${studentFees }" title="Student fee Data">
 					<span class="round-tabs four">
-						<i class="glyphicon glyphicon-gift glyphicon-menu"></i>
+						<i class="glyphicon fa fa-inr glyphicon-menu"></i>
 					</span> 
 				</a>
 			</li>
 			
 			<spring:url value="/payment-type" var="paymentType"/>
 			<li <c:if test="${curl eq 'paymentType' }"> class="active"</c:if>>
-				<a href="${paymentType }" title="blah blah">
+				<a href="${paymentType }" title="Select Payment type">
 					<span class="round-tabs five">
-						<i class="glyphicon glyphicon-comment glyphicon-menu"></i>
+						<i class="glyphicon fa fa-credit-card glyphicon-menu"></i>
 					</span> 
 				</a>
 			</li>

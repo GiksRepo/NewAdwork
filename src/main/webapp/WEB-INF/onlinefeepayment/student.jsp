@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="tab-content">
 					<div class="tab-pane fade in active" id="messages">
-                          <h3 class="head text-center">Bootsnipp goodies</h3>
+                          <h3 class="head text-center"><spring:message code="student.student.header" text="Student Details"/> </h3>
                           <div class="col-md-12 col-xs-12">
 								<div class="mar-auto text-center">
 									<!-- Student info details -->
@@ -68,7 +68,7 @@
 							</div>
                           
                           	<p class="text-center">
-                    			<a href="" class="btn btn-success btn-outline-rounded green"> Online Payment <span style="margin-left:10px;" class="glyphicon glyphicon-send"></span></a>
+                    			<a href="" class="btn btn-success btn-outline-rounded green" style="background-color:#4386FC;"> Online Payment <span style="margin-left:10px;" class="glyphicon glyphicon-send"></span></a>
                 			</p>
                       </div>
                       <div class="clearfix"></div>

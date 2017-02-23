@@ -18,6 +18,10 @@
 	<link rel="stylesheet" href="${styleCss}">
 	<spring:url value="resources/assets/css/custom.css" var="customCss"/>
 	<link rel="stylesheet" href="${customCss}">
+	<spring:url value="resources/assets/css/font-awesome.min.css" var="faCss"/>
+	<link rel="stylesheet" href="${faCss}">
+	<spring:url value="resources/assets/css/myStyle.css" var="myCss"/>
+	<link rel="stylesheet" href="${myCss}">
   </head>
   <body style="background:#efefe9;">
  <!--  <section style="background:#efefe9;">  -->
