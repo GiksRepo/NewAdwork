@@ -1,11 +1,20 @@
 package org.giks.domainobject;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "fee")
@@ -17,14 +26,25 @@ public class Fee implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
+	@GeneratedValue(generator = "increment")
+	@GenericGenerator(name = "increment", strategy = "increment")
 	@Column(name = "id")
 	private Long id;
 	
-	@Column(name = "fee_type")
-	private String feeType;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "enum_id")
+	private Enumeration feeType;
 	
 	@Column(name = "amount")
 	private Long amount;
+	
+	@OneToMany(fetch=FetchType.LAZY)
+	@JoinColumn(name = "fee_id")
+	private Set<StudentFee> fees; 
+	
+	public Fee() {
+		// TODO Auto-generated constructor stub
+	}
 
 	public Long getId() {
 		return id;
@@ -34,11 +54,11 @@ public class Fee implements Serializable {
 		this.id = id;
 	}
 
-	public String getFeeType() {
+	public Enumeration getFeeType() {
 		return feeType;
 	}
 
-	public void setFeeType(String feeType) {
+	public void setFeeType(Enumeration feeType) {
 		this.feeType = feeType;
 	}
 

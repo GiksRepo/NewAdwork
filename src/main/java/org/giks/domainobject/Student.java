@@ -1,10 +1,16 @@
 package org.giks.domainobject;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -19,6 +25,9 @@ public class Student implements Serializable {
 	@Id
 	@Column(name = "admission_no")
 	private Long admissionNo;
+	
+	@ManyToOne(fetch=FetchType.EAGER)
+	private Standard standard;
 	
 	@Column(name = "first_name")
 	private String firstName;
@@ -40,6 +49,14 @@ public class Student implements Serializable {
 	
 	@Column(name = "section")
 	private String section;
+	
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name = "category_id")
+	private Reservation category;
+	
+	@OneToMany(fetch=FetchType.LAZY)
+	@JoinColumn(name = "student_id")
+	private Set<StudentFee> fees; 
 	
 	public Long getAdmissionNo() {
 		return admissionNo;
@@ -103,6 +120,30 @@ public class Student implements Serializable {
 
 	public void setSection(String section) {
 		this.section = section;
+	}
+	
+	public Reservation getCategory() {
+		return category;
+	}
+
+	public void setCategory(Reservation category) {
+		this.category = category;
+	}
+
+	public Set<StudentFee> getFees() {
+		return fees;
+	}
+
+	public void setFees(Set<StudentFee> fees) {
+		this.fees = fees;
+	}
+
+	public Standard getStandard() {
+		return standard;
+	}
+
+	public void setStandard(Standard standard) {
+		this.standard = standard;
 	}
 
 	public Student() {
