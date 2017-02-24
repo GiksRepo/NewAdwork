@@ -1,8 +1,10 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="tab-content">
 <div class="tab-pane fade in active" id="profile">
-	<h3 class="head text-center">Select Month</h3>
+	<h3 class="head text-center"><spring:message code="payment-month.title" text="Select Month"/> </h3>
     	<p class="narrow text-center">
-        	Lorem ipsum dolor sit amet, his ea mollis fabellas principes. Quo mazim facilis tincidunt ut, utinam saperet facilisi an vim.
+        <!-- this text will appear from Db -->	Fee Payment for Session 2017 - 2018
         </p>
 		
 		<div class="row">
@@ -59,7 +61,7 @@
 	</div>
                           
     <p class="text-center">
-    	<a href="" class="btn btn-success btn-outline-rounded green"> Next Step <span style="margin-left:10px;" class="glyphicon glyphicon-send"></span></a>
+    	<a href="" class="btn btn-success btn-outline-rounded green"> <spring:message code="common.next" text="Next"/> </a>
     </p>           
   </div>
   <div class="clearfix"></div>                        

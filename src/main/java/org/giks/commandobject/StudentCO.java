@@ -1,6 +1,6 @@
 package org.giks.commandobject;
 
-public class Student 
+public class StudentCO 
 {
 	private Long admissionNo;
 	private String firstName;
@@ -75,7 +75,7 @@ public class Student
 		this.section = section;
 	}
 
-	public Student() {
+	public StudentCO() {
 		// TODO Auto-generated constructor stub
 	}
 }

@@ -40,5 +40,7 @@
    <script src="${bootstrapjs }"></script>
    <spring:url value="resources/assets/js/custom.js" var="customjs"/>
    <script src="${customjs }"></script>
+   <spring:url value="resources/assets/js/app.js" var="appjs"/>
+   <script src="${appjs }"></script>
   </body>
   </html>

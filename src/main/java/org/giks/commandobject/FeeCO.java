@@ -1,6 +1,6 @@
 package org.giks.commandobject;
 
-public class Fee 
+public class FeeCO 
 {
 	private Long id;
 	private String feeType;
