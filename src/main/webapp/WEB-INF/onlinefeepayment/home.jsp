@@ -1,5 +1,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <div class="tab-content">
 	<div class="tab-pane fade in active" id="home">
 
@@ -21,16 +22,16 @@
 	               		<hr />
 	               	</div>
 	            </div> 
-				
 				<div class="main-login main-center">
-					<form class="form-horizontal" method="post" action="#"style="padding: 0 30px;">
-						
+					<spring:url value="/search-Details" var="target"/>
+					<form:form modelAttribute="home" id="formHome" action="${target}" class="form-horizontal" method="post" style="padding: 0 30px;" >
+							
 							<div class="form-group">
 								<label for="name" class="cols-sm-2 control-label"><spring:message code="home.student.admissionNo" text="Student Admission No"/> </label>
 								<div class="cols-sm-10">
 									<div class="input-group">
 										<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-										<input type="text" class="form-control" name="admissionno" id="admissionno"  placeholder="Enter student admission no"/>
+										<form:input placeholder="Enter student admission no" path="admissionNo" type="text" class="form-control" value="${studentAdmissionNO }"/>
 									</div>
 								</div>
 							</div>
@@ -45,7 +46,7 @@
 								<div class="cols-sm-10">
 									<div class="input-group">
 										<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-										<input type="text" class="form-control" name="studentName" id="studentName"  placeholder="Enter student name"/>
+										<form:input placeholder="Enter student name" path="studentName" type="text" class="form-control"/>
 									</div>
 								</div>
 							</div>
@@ -55,7 +56,7 @@
 								<div class="cols-sm-10">
 									<div class="input-group">
 										<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-										<input type="text" class="form-control" name="fatherName" id="fatherName"  placeholder="Enter student father name"/>
+										<form:input placeholder="Enter student father name" path="fatherName" type="text" class="form-control"/>
 									</div>
 								</div>
 							</div>
@@ -65,7 +66,7 @@
 								<div class="cols-sm-10">
 									<div class="input-group">
 										<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-										<input type="text" class="form-control" name="studentClass" id="studentClass"  placeholder="Enter student class"/>
+										<form:input placeholder="Enter student class" path="studentClass" type="text" class="form-control"/>
 									</div>
 								</div>
 							</div>
@@ -75,15 +76,15 @@
 								<div class="cols-sm-10">
 									<div class="input-group">
 										<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-										<input type="password" class="form-control" name="studentSection" id="studentSection"  placeholder="Enter student section"/>
+										<form:input placeholder="Enter student section" path="studentSection" type="text" class="form-control"/>
 									</div>
 								</div>
 							</div>
 							
 							<div class="form-group text-center">
-								<a href="" class="btn btn-success btn-outline-rounded green"> <spring:message code="home.student.search" text="Search Student Infromation"/> <span style="margin-left:10px;" class="glyphicon glyphicon-send"></span></a>
+								<a href="javascript:void(0);" id="searchStudentBtn" class="btn btn-success btn-outline-rounded green"> <spring:message code="home.student.search" text="Search Student Infromation"/> <span style="margin-left:10px;" class="glyphicon glyphicon-send"></span></a>
 							</div>
-						</form>
+						</form:form>
 					</div>
 				</div>
 			</div>
