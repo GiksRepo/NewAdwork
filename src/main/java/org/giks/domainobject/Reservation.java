@@ -32,38 +32,29 @@ public class Reservation implements Serializable{
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "enum_id")
-	private Enumeration categoryId;
+	private Enumeration category;
 
 	@Column(name = "percent")
 	private Byte percent;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	private Set<Student> students;
-	
 	public Reservation() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	
 
 	public Long getId() {
 		return id;
 	}
 
-
-
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-
-
-	public Enumeration getCategoryId() {
-		return categoryId;
+	public Enumeration getCategory() {
+		return category;
 	}
 
-	public void setCategoryId(Enumeration categoryId) {
-		this.categoryId = categoryId;
+	public void setCategory(Enumeration category) {
+		this.category = category;
 	}
 
 	public Byte getPercent() {

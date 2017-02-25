@@ -5,9 +5,11 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -32,7 +34,7 @@ public class Payment implements Serializable {
 	@Column(name = "id")
 	private Long Id;
 	
-	@OneToMany
+	@ManyToOne
 	@JoinColumn(name ="student_id")
 	private Student student;
 	
@@ -42,12 +44,20 @@ public class Payment implements Serializable {
 	@Column(name = "amount_paid")
 	private Long amountPaid;
 	
-	@OneToMany
-	@Column(name = "status")
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "enum_id")
 	private Enumeration status;
 	
-	@Column(name = "account_number")
+	@Column(name = "payment_date")
 	private Date paymentDate;
+
+	public Long getId() {
+		return Id;
+	}
+
+	public void setId(Long id) {
+		Id = id;
+	}
 
 	public Student getStudent() {
 		return student;

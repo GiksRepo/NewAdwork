@@ -36,7 +36,7 @@ public class Standard implements Serializable {
 	private Long description;
 	
 	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name = "studentId")
+	@JoinColumn(name = "student_id")
 	private Set<Student> students;
 	
 	public Standard() {
