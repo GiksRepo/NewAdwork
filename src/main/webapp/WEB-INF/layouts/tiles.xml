@@ -32,4 +32,9 @@
 		<put-attribute name="PageTitle" value="Payment Verified"/> 
 		<put-attribute name="content" value="/WEB-INF/onlinefeepayment/payment-verify.jsp"/> 
 	</definition>
+	
+	<definition name="Error" extends="Home"> 
+		<put-attribute name="PageTitle" value="Error"/> 
+		<put-attribute name="content" value="/WEB-INF/common/error.jsp"/> 
+	</definition>
 </tiles-definitions>

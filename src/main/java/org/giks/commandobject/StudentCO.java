@@ -1,5 +1,9 @@
 package org.giks.commandobject;
 
+import org.giks.domainobject.Student;
+import org.giks.viewobject.HomePageVO;
+import org.springframework.util.StringUtils;
+
 public class StudentCO 
 {
 	private Long admissionNo;
@@ -10,7 +14,16 @@ public class StudentCO
 	private String address;
 	private String dateOfBirth;
 	private String section;
+	private String classId;
 	
+	public String getClassId() {
+		return classId;
+	}
+
+	public void setClassId(String classId) {
+		this.classId = classId;
+	}
+
 	public Long getAdmissionNo() {
 		return admissionNo;
 	}
@@ -77,5 +90,68 @@ public class StudentCO
 
 	public StudentCO() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	public StudentCO(HomePageVO vo) {
+		// TODO Auto-generated constructor stub
+		if(isNumeric(vo.getAdmissionNo()))
+			admissionNo = Long.valueOf(vo.getAdmissionNo());
+		
+		String name = vo.getStudentName();
+		
+		if(!StringUtils.isEmpty(name)){
+			String[] nameArr = name.trim().split(" ");
+			switch (nameArr.length)
+			{
+			case 1:
+				firstName = nameArr[0];
+				break;
+			case 2:
+				firstName = nameArr[0];
+				lastName = nameArr[1];
+				break;
+			case 3:
+				firstName = nameArr[0];
+				middleName = nameArr[1];
+				lastName = nameArr[2];
+				break;
+			}
+			
+			fatherName = vo.getFatherName();
+			
+			section = vo.getStudentSection();
+			
+			classId = vo.getStudentClass();
+		}
+	}
+	
+	public StudentCO(Student student) {
+		// TODO Auto-generated constructor stub
+			admissionNo = student.getAdmissionNo();
+			firstName = student.getFirstName();
+			middleName = student.getMiddleName();
+			lastName = student.getLastName();
+			fatherName = student.getFatherName();
+			section = student.getSection();
+			classId = String.valueOf(student.getStandard().getClassId());
+			address = student.getAddress();
+			dateOfBirth = student.getDateOfBirth();
+		}
+	
+	public Boolean validate(){
+		if(admissionNo != null || (!StringUtils.isEmpty(firstName) && !StringUtils.isEmpty(fatherName) && !StringUtils.isEmpty(section) && !StringUtils.isEmpty(classId)))
+			return true;
+		return false;
+	}
+	
+	public Boolean isNumeric(String sadmissionNo){
+		try{
+			Long.valueOf(sadmissionNo);
+		}
+		catch (Exception e) 
+		{
+			return false;
+		}
+		return true;
 	}
 }

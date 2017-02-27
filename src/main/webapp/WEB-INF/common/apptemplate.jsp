@@ -22,6 +22,8 @@
 	<link rel="stylesheet" href="${faCss}">
 	<spring:url value="resources/assets/css/myStyle.css" var="myCss"/>
 	<link rel="stylesheet" href="${myCss}">
+	<spring:url value="resources/assets/css/error.css" var="errorCss"/>
+	<link rel="stylesheet" href="${errorCss}">
   </head>
   <body style="background:#efefe9;">
  <!--  <section style="background:#efefe9;">  -->

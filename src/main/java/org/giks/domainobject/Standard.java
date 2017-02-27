@@ -33,11 +33,7 @@ public class Standard implements Serializable {
 	private String name;
 	
 	@Column(name = "description")
-	private Long description;
-	
-	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name = "student_id")
-	private Set<Student> students;
+	private String description;
 	
 	public Standard() {
 		// TODO Auto-generated constructor stub
@@ -59,20 +55,12 @@ public class Standard implements Serializable {
 		this.name = name;
 	}
 
-	public Long getDescription() {
+	public String getDescription() {
 		return description;
 	}
 
-	public void setDescription(Long description) {
+	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public Set<Student> getStudents() {
-		return students;
-	}
-
-	public void setStudents(Set<Student> students) {
-		this.students = students;
 	}
 
 	

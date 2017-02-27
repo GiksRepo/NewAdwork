@@ -26,7 +26,7 @@ public class ApplicationStartUp
 			entityManagerFactory = Persistence.createEntityManagerFactory("feePaymentPortal");
 			sessionFactory = entityManagerFactory.unwrap(SessionFactory.class);
 			
-			Session session = sessionFactory.openSession();
+			/*Session session = sessionFactory.openSession();
 			Transaction transaction = session.beginTransaction();
 			transaction.begin();
 			
@@ -56,7 +56,7 @@ public class ApplicationStartUp
 			session.persist(userRole3);
 						
 			transaction.commit();
-			session.close();
+			session.close();*/
 		}
 	}
 	

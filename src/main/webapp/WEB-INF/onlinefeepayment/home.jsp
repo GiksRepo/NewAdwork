@@ -3,6 +3,15 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <div class="tab-content">
 	<div class="tab-pane fade in active" id="home">
+		<div class="col-md-12 col-xs-12">
+							  <c:if test="${not empty home.error}">
+							  		<div class="alert alert-danger">
+	  									<strong>${home.error}</strong>
+									</div>
+							  </c:if>
+						</div>
+						 
+						 
 
     	<h3 class="head text-center"> <spring:message code="giks.appName" text="default app name"/> </h3>
             <p class="narrow text-center">
@@ -31,7 +40,7 @@
 								<div class="cols-sm-10">
 									<div class="input-group">
 										<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-										<form:input placeholder="Enter student admission no" path="admissionNo" type="text" class="form-control" value="${studentAdmissionNO }"/>
+										<form:input placeholder="Enter student admission no" path="admissionNo" type="text" class="form-control"/>
 									</div>
 								</div>
 							</div>
@@ -89,7 +98,6 @@
 				</div>
 			</div>
 		</div>
-                          
  	</div>
  	<div class="clearfix"></div>
 </div>
