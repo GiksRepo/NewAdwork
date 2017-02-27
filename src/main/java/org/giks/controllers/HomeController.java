@@ -3,6 +3,8 @@ package org.giks.controllers;
 
 import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.giks.serviceInterfaces.StudentServiceIn;
 import org.giks.viewobject.HomePageVO;
 import org.slf4j.Logger;
@@ -52,9 +54,35 @@ public class HomeController
 	}
 	
 	@RequestMapping(value = "/student-details", method = RequestMethod.GET)
-	public String getStudentDetails(ModelMap model)
+	public String getStudentDetails(ModelMap model, HttpServletRequest request)
 	{
-		
+		String studentAdmissionNO = (String) request.getSession().getAttribute("studentAdmissionNO");
+		if(!StringUtils.isEmpty(studentAdmissionNO))
+		{
+			Long studentAdmissionNo = Long.valueOf(0);
+			try
+			{
+				studentAdmissionNo = Long.valueOf(studentAdmissionNO);
+			}
+			catch(Exception e)
+			{
+				logger.error("error message "+e.getMessage());
+				model.addAttribute("error", "Invalid Admission No");
+				
+				return "StudentDetails";
+			}
+			
+			HomePageVO homePageVO2 = studentService.getStudentDetails(studentAdmissionNo);
+			
+			if(homePageVO2 == null)
+				model.addAttribute("error", "Record Not Found for Admission No : "+studentAdmissionNo);
+			else
+				model.addAttribute("studentDetails", homePageVO2);
+		}
+		else
+		{
+			model.addAttribute("error", "Your Session is Expired.");
+		}
 		model.addAttribute("curl", "studentDetails");
 		return "StudentDetails";
 	}

@@ -69,7 +69,7 @@
 							</div>
                           
                           	<p class="text-center">
-                    			<a href="" class="btn btn-success btn-outline-rounded green" style="background-color:#4386FC;"> <spring:message code="common.next" text="Next"/> </a>
+                    			<a href="javascript:void(0);" class="btn btn-success btn-outline-rounded green" style="background-color:#4386FC;"> <spring:message code="common.next" text="Next"/> </a>
                 			</p>
                 			</c:if>
                       </div>
