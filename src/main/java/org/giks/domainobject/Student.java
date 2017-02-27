@@ -23,10 +23,11 @@ public class Student implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "admission_no")
+	@Column(name = "student_id")
 	private Long admissionNo;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name = "class_id")
 	private Standard standard;
 	
 	@Column(name = "first_name")
@@ -50,13 +51,20 @@ public class Student implements Serializable {
 	@Column(name = "section")
 	private String section;
 	
-	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name = "category_id")
-	private Reservation category;
+	@Column(name = "image_path")
+	private String imagePath;
 	
-	@OneToMany(fetch=FetchType.LAZY)
-	@JoinColumn(name = "student_id")
-	private Set<StudentFee> fees; 
+	public String getImagePath() {
+		return imagePath;
+	}
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name = "id")
+	private Reservation category;
 	
 	public Long getAdmissionNo() {
 		return admissionNo;
@@ -128,14 +136,6 @@ public class Student implements Serializable {
 
 	public void setCategory(Reservation category) {
 		this.category = category;
-	}
-
-	public Set<StudentFee> getFees() {
-		return fees;
-	}
-
-	public void setFees(Set<StudentFee> fees) {
-		this.fees = fees;
 	}
 
 	public Standard getStandard() {

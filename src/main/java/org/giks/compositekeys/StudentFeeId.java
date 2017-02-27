@@ -5,6 +5,8 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import org.giks.domainobject.Fee;
 import org.giks.domainobject.Standard;
@@ -18,10 +20,12 @@ public class StudentFeeId implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	@Column(name = "fee_id")
+	@ManyToOne
+	@JoinColumn(name = "fee_id")
 	private Fee feeId;
 	
-	@Column(name = "student_id")
+	@ManyToOne
+	@JoinColumn(name = "student_id")
 	private Student studentId;
 	
 	public StudentFeeId() {

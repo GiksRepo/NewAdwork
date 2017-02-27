@@ -28,7 +28,7 @@ public class Fee implements Serializable {
 	@Id
 	@GeneratedValue(generator = "increment")
 	@GenericGenerator(name = "increment", strategy = "increment")
-	@Column(name = "id")
+	@Column(name = "fee_id")
 	private Long id;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -37,10 +37,6 @@ public class Fee implements Serializable {
 	
 	@Column(name = "amount")
 	private Long amount;
-	
-	@OneToMany(fetch=FetchType.LAZY)
-	@JoinColumn(name = "fee_id")
-	private Set<StudentFee> fees; 
 	
 	public Fee() {
 		// TODO Auto-generated constructor stub
