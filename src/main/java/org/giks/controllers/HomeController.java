@@ -107,7 +107,7 @@ public class HomeController
 	public String searchStudentDetails(ModelMap model,@ModelAttribute HomePageVO homepageVo)
 	{
 		HomePageVO homePageVO2 = null;
-		if(homepageVo !=null)
+		if(homepageVo != null)
 		{
 			if(!StringUtils.isEmpty(homepageVo.getAdmissionNo()))
 			{
@@ -136,7 +136,7 @@ public class HomeController
 		else
 		{
 			logger.error("homepageVo object is null while searching date :"+new Date().getTime());
-			model.addAttribute("error", "Record Not Found");
+			model.addAttribute("error", "Record Not Found 404");
 		}
 		
 			
