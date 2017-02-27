@@ -3,14 +3,13 @@
 <div class="tab-content">
 					<div class="tab-pane fade in active" id="messages">
 						<div class="col-md-12 col-xs-12">
-							  <c:if test="${not empty error}">
+							  <c:if test="${not empty studentDetails.error}">
 							  		<div class="alert alert-danger">
-	  									<strong>${error}</strong>
+	  									<strong>${studentDetails.error}</strong>
 									</div>
 							  </c:if>
 						</div>
 						 
-						 <c:if test="${empty error}"> 
                           <h3 class="head text-center"><spring:message code="student.student.header" text="Student Details"/> </h3>
                           <div class="col-md-12 col-xs-12">
 								<div class="mar-auto text-center">
@@ -71,7 +70,6 @@
                           	<p class="text-center">
                     			<a href="javascript:void(0);" class="btn btn-success btn-outline-rounded green" style="background-color:#4386FC;"> <spring:message code="common.next" text="Next"/> </a>
                 			</p>
-                			</c:if>
                       </div>
                       <div class="clearfix"></div>
 </div>

@@ -6,6 +6,7 @@ import org.giks.serviceInterfaces.StudentServiceIn;
 import org.giks.viewobject.HomePageVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 @Service
 public class StudentService implements StudentServiceIn
@@ -14,19 +15,32 @@ public class StudentService implements StudentServiceIn
 	private StudentDaoImpl studentDaoImpl;
 	
 	@Override
-	public HomePageVO getStudentDetails(Long studentAdmissionNO) 
+	public HomePageVO getStudentDetails(HomePageVO homePageVO) 
 	{
-		HomePageVO homePageVO = null;
-		StudentCO studentCO = studentDaoImpl.getStudentDetails(studentAdmissionNO);
-		if(studentCO != null)
+		
+		StudentCO studentCO = new StudentCO(homePageVO);
+		if(studentCO.validate())
 		{
-			homePageVO = new HomePageVO();
-			homePageVO.setAdmissionNo(String.valueOf(studentCO.getAdmissionNo()));
-			homePageVO.setStudentName(studentCO.getFirstName()+" "+studentCO.getMiddleName()+" "+studentCO.getLastName());
-			homePageVO.setFatherName(studentCO.getFatherName());
-			homePageVO.setStudentClass("IV");
-			homePageVO.setStudentSection(studentCO.getSection());
+			if(StringUtils.isEmpty(studentCO.getAdmissionNo()))
+			{
+				studentCO = studentDaoImpl.getStudentDetailsByAdmissionNo(studentCO);
+				if(StringUtils.isEmpty(String.valueOf(studentCO.getAdmissionNo())))
+					homePageVO.setError("Record not found");
+				else
+				{
+					homePageVO.setAdmissionNo(String.valueOf(studentCO.getAdmissionNo()));
+					homePageVO.setFatherName(studentCO.getFatherName());
+					homePageVO.setStudentSection(studentCO.getSection());
+					homePageVO.setStudentClass(studentCO.getClassId());
+					homePageVO.setStudentName(studentCO.getFirstName()+" "+studentCO.getLastName());
+				}
+			}else
+			{
+				homePageVO.setError("under construction");
+			}
 		}
+		else
+			homePageVO.setError("Validation failed.");
 		return homePageVO;
 	}
 

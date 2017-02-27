@@ -7,7 +7,14 @@ public class HomePageVO
 	private String fatherName;
 	private String studentClass;
 	private String studentSection;
+	private String error = "";
 	
+	public String getError() {
+		return error;
+	}
+	public void setError(String error) {
+		this.error = error;
+	}
 	public String getAdmissionNo() {
 		return admissionNo;
 	}

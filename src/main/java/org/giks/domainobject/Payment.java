@@ -50,6 +50,12 @@ public class Payment implements Serializable {
 	
 	@Column(name = "payment_date")
 	private Date paymentDate;
+	
+	@Column(name = "payment_to")
+	private Date paymentTo;
+	
+	@Column(name = "payment_from")
+	private Date paymentForm;
 
 	public Long getId() {
 		return Id;
