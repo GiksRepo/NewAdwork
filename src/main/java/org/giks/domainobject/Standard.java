@@ -3,6 +3,7 @@ package org.giks.domainobject;
 import java.io.Serializable;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -34,6 +35,10 @@ public class Standard implements Serializable {
 	
 	@Column(name = "description")
 	private String description;
+	
+	@OneToMany(fetch=FetchType.LAZY, targetEntity=Student.class, cascade=CascadeType.ALL)
+	//@JoinColumn(name = "venid", referencedColumnName="vid")
+	private Set<Student> student;
 	
 	public Standard() {
 		// TODO Auto-generated constructor stub
