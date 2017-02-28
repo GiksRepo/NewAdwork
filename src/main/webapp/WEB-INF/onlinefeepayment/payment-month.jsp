@@ -2,9 +2,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="tab-content">
 <div class="tab-pane fade in active" id="profile">
+<div class="col-md-12 col-xs-12">
+							  <c:if test="${not empty studentDetails.error}">
+							  		<div class="alert alert-danger">
+	  									<strong>${studentDetails.error}</strong>
+									</div>
+							  </c:if>
+						</div>
 	<h3 class="head text-center"><spring:message code="payment-month.title" text="Select Month"/> </h3>
     	<p class="narrow text-center">
-        <!-- this text will appear from Db -->	Fee Payment for Session 2017 - 2018
+        <!-- this text will appear from Db -->	Admission No:${studentDetails.admissionNo } 
         </p>
 		
 		<div class="row">

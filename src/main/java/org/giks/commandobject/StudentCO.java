@@ -133,7 +133,7 @@ public class StudentCO
 			lastName = student.getLastName();
 			fatherName = student.getFatherName();
 			section = student.getSection();
-			classId = String.valueOf(student.getStandard().getClassId());
+			classId = String.valueOf(student.getStandard().getName());
 			address = student.getAddress();
 			dateOfBirth = student.getDateOfBirth();
 		}
@@ -150,6 +150,7 @@ public class StudentCO
 		}
 		catch (Exception e) 
 		{
+			//e.printStackTrace();
 			return false;
 		}
 		return true;

@@ -40,7 +40,7 @@
 								<div class="cols-sm-10">
 									<div class="input-group">
 										<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-										<form:input placeholder="Enter student admission no" path="admissionNo" type="text" class="form-control"/>
+										<form:input placeholder="Enter student admission no" path="admissionNo" type="text" class="form-control" value = "${studentAdmissionNO}"/>
 									</div>
 								</div>
 							</div>
@@ -91,7 +91,12 @@
 							</div>
 							
 							<div class="form-group text-center">
-								<a href="javascript:void(0);" id="searchStudentBtn" class="btn btn-success btn-outline-rounded green"> <spring:message code="home.student.search" text="Search Student Infromation"/> <span style="margin-left:10px;" class="glyphicon glyphicon-send"></span></a>
+								<%-- <a href="javascript:void(0);" id="searchStudentBtn" class="btn btn-success btn-outline-rounded green"> <spring:message code="home.student.search" text="Search Student Infromation"/> <span style="margin-left:10px;" class="glyphicon glyphicon-send"></span></a> --%>
+								<input type="submit" id="searchStudentBtn" value="<spring:message code="home.student.search" text="Search Student Infromation"/>" class="btn btn-success btn-outline-rounded green">
+								<div id="loadingDiv" style="display:none;">
+									<spring:url value="resources/assets/images/ajax_loader.gif" var="loadingImage"/>
+									<img src="${loadingImage }"/>
+								</div>
 							</div>
 						</form:form>
 					</div>

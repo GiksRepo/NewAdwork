@@ -24,9 +24,13 @@ public class StudentDaoImpl implements StudentDaoIn
 	{
 		Long admissonNo = studentCO.getAdmissionNo();
 		 try {
-			 Session session = applicationStartUp.getSessionFactory().getCurrentSession();
+			 Session session = applicationStartUp.getSessionFactory().openSession();
 			 session.beginTransaction();
-			 studentCO = new StudentCO(session.get(Student.class, admissonNo));
+			 Student student = session.get(Student.class, admissonNo);
+			 if(student != null)
+				 studentCO = new StudentCO(student);
+			 else
+				 studentCO = null;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -41,7 +41,7 @@ public class AuthenticationService implements UserDetailsService
 			{
 				
 				for(UserRoles userRoleTemp:userRoles)
-					roleArr.add(new SimpleGrantedAuthority(userRoleTemp.getRole()));
+					roleArr.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
 				//userAuthorities = StringUtils.arrayToCommaDelimitedString(roleArr.toArray());
 			}
 			if (user == null) 
