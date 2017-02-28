@@ -133,13 +133,12 @@ public class StudentCO
 			lastName = student.getLastName();
 			fatherName = student.getFatherName();
 			section = student.getSection();
-			classId = String.valueOf(student.getStandard().getClassId());
+			classId = String.valueOf(student.getStandard().getName());
 			address = student.getAddress();
 			dateOfBirth = student.getDateOfBirth();
 		}
 	
 	public Boolean validate(){
-		System.out.println("admissionNo : "+admissionNo);
 		if(admissionNo != null || (!StringUtils.isEmpty(firstName) && !StringUtils.isEmpty(fatherName) && !StringUtils.isEmpty(section) && !StringUtils.isEmpty(classId)))
 			return true;
 		return false;
@@ -151,7 +150,7 @@ public class StudentCO
 		}
 		catch (Exception e) 
 		{
-			e.printStackTrace();
+			//e.printStackTrace();
 			return false;
 		}
 		return true;

@@ -66,9 +66,13 @@
 									
 							</div>
 							</div>
-                          
+                          <spring:url value="/payment-month" var="paymentMonth"/>
                           	<p class="text-center">
-                    			<a href="javascript:void(0);" class="btn btn-success btn-outline-rounded green" style="background-color:#4386FC;"> <spring:message code="common.next" text="Next"/> </a>
+                    			<a href="${paymentMonth }" id="searchStudentBtn" class="btn btn-success btn-outline-rounded green" style="background-color:#4386FC;"> <spring:message code="common.next" text="Next"/> </a>
+                    			<div id="loadingDiv" style="display:none;">
+									<spring:url value="resources/assets/images/ajax_loader.gif" var="loadingImage"/>
+									<img src="${loadingImage }"/>
+								</div>
                 			</p>
                       </div>
                       <div class="clearfix"></div>
