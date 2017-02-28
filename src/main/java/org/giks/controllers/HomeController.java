@@ -58,36 +58,34 @@ public class HomeController
 	@RequestMapping(value = "/student-details", method = RequestMethod.GET)
 	public String getStudentDetails(ModelMap model, HttpServletRequest request)
 	{
-		String studentAdmissionNO = (String) request.getSession().getAttribute("studentAdmissionNO");
+		HttpSession session = request.getSession();
+		String studentAdmissionNO = (String) session.getAttribute("studentAdmissionNO");
+		HomePageVO homepageVo = new HomePageVO();
 		if(!StringUtils.isEmpty(studentAdmissionNO))
 		{
-			Long studentAdmissionNo = Long.valueOf(0);
-			try
+			homepageVo.setAdmissionNo(studentAdmissionNO);
+			homepageVo = studentService.getStudentDetails(homepageVo); 
+			if(!StringUtils.isEmpty(homepageVo.getError()))
 			{
-				studentAdmissionNo = Long.valueOf(studentAdmissionNO);
-			}
-			catch(Exception e)
+				session.invalidate();
+				homepageVo.setError("Session expired!");
+				model.addAttribute("home", homepageVo);
+				model.addAttribute("curl", "home");
+				return "Home";
+			}else
 			{
-				logger.error("error message "+e.getMessage());
-				model.addAttribute("error", "Invalid Admission No");
-				
+				model.addAttribute("studentDetails", homepageVo);
+				model.addAttribute("curl", "studentDetails");
 				return "StudentDetails";
 			}
-			HomePageVO homePageVO = new HomePageVO();
-			homePageVO.setAdmissionNo(studentAdmissionNO);
-			HomePageVO homePageVO2 = studentService.getStudentDetails(homePageVO);
-			
-			if(homePageVO2 == null)
-				model.addAttribute("error", "Record Not Found for Admission No : "+studentAdmissionNo);
-			else
-				model.addAttribute("studentDetails", homePageVO2);
 		}
 		else
 		{
-			model.addAttribute("error", "Your Session is Expired.");
+			homepageVo.setError("Session expired!");
+			model.addAttribute("home", homepageVo);
+			model.addAttribute("curl", "home");
+			return "Home";
 		}
-		model.addAttribute("curl", "studentDetails");
-		return "StudentDetails";
 	}
 	
 	@RequestMapping(value = "/payment-type", method = RequestMethod.GET)
@@ -134,5 +132,9 @@ public class HomeController
 				session = request.getSession(true);
 			}
 			session.setAttribute("studentAdmissionNO", studentAdmissionNO);
+	}
+	
+	private void destroySession(HttpServletRequest request){
+		
 	}
 }

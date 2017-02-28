@@ -26,7 +26,7 @@ public class Student implements Serializable {
 	@Column(name = "student_id")
 	private Long admissionNo;
 	
-	@OneToOne(fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "class_id")
 	private Standard standard;
 	

@@ -21,10 +21,10 @@ public class StudentService implements StudentServiceIn
 		StudentCO studentCO = new StudentCO(homePageVO);
 		if(studentCO.validate())
 		{
-			if(StringUtils.isEmpty(studentCO.getAdmissionNo()))
+			if(!StringUtils.isEmpty(studentCO.getAdmissionNo()))
 			{
 				studentCO = studentDaoImpl.getStudentDetailsByAdmissionNo(studentCO);
-				if(StringUtils.isEmpty(String.valueOf(studentCO.getAdmissionNo())))
+				if(studentCO == null)
 					homePageVO.setError("Record not found");
 				else
 				{

@@ -139,6 +139,7 @@ public class StudentCO
 		}
 	
 	public Boolean validate(){
+		System.out.println("admissionNo : "+admissionNo);
 		if(admissionNo != null || (!StringUtils.isEmpty(firstName) && !StringUtils.isEmpty(fatherName) && !StringUtils.isEmpty(section) && !StringUtils.isEmpty(classId)))
 			return true;
 		return false;
@@ -150,6 +151,7 @@ public class StudentCO
 		}
 		catch (Exception e) 
 		{
+			e.printStackTrace();
 			return false;
 		}
 		return true;
