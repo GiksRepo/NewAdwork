@@ -1,5 +1,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <div class="tab-content">
 <div class="tab-pane fade in active" id="profile">
 <div class="col-md-12 col-xs-12">
@@ -17,13 +18,14 @@
 		<div class="row">
 			<div class="col-md-12 col-xs-12">
 				<div class="mar-auto text-center">
-					<h3>Select  From 
+					<h3>Fee From 
 						<div class="btn-group" id="myDropdown">
 							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
 								Month
 								<span class="caret"></span>
 							</a>
-							 <ul class="dropdown-menu">
+							April
+							 <!-- <ul class="dropdown-menu">
 								<li><a href="#">January</a></li>
 								<li><a href="#">February</a></li>
 								<li><a href="#">March</a></li>
@@ -36,7 +38,7 @@
 								<li> <a href="#">October</a></li>
 								<li> <a href="#">November</a> </li>
 								<li> <a href="#">December</a></li>
-							</ul>
+							</ul> -->
 						</div>
 										
 										
@@ -47,7 +49,24 @@
 								Month
 								<span class="caret"></span>
 							</a>
-							<ul class="dropdown-menu">
+							<form:form modelAttribute="studentDetails">
+								<form:label path=""></form:label>
+								<form:select path="admissionNo">
+									<form:option value="1">January</form:option>
+									<form:option value="2">February</form:option>
+									<form:option value="3">March</form:option>
+									<form:option value="4">April</form:option>
+									<form:option value="5">May</form:option>
+									<form:option value="6">June</form:option>
+									<form:option value="7">July</form:option>
+									<form:option value="8">August</form:option>
+									<form:option value="9">September</form:option>
+									<form:option value="10">October</form:option>
+									<form:option value="11">November</form:option>
+									<form:option value="12">December</form:option>
+								</form:select>
+							</form:form>
+							<!-- <ul class="dropdown-menu">
 								<li><a href="#">January</a></li>
 								<li><a href="#">February</a></li>
 								<li><a href="#">March</a></li>
@@ -60,7 +79,7 @@
 								<li> <a href="#">October</a></li>
 								<li> <a href="#">November</a> </li>
 								<li> <a href="#">December</a></li>
-							</ul>
+							</ul> -->
 						</div>
 					</h3>
 			</div>
