@@ -1,6 +1,7 @@
 package org.giks.commandobject;
 
 import org.giks.domainobject.Student;
+import org.giks.domainobject.StudentFee;
 import org.giks.viewobject.HomePageVO;
 import org.springframework.util.StringUtils;
 
@@ -15,6 +16,7 @@ public class StudentCO
 	private String dateOfBirth;
 	private String section;
 	private String classId;
+	private Long fee;
 	
 	public String getClassId() {
 		return classId;
@@ -87,6 +89,14 @@ public class StudentCO
 	public void setSection(String section) {
 		this.section = section;
 	}
+	
+	public Long getFee() {
+		return fee;
+	}
+
+	public void setFee(Long fee) {
+		this.fee = fee;
+	}
 
 	public StudentCO() {
 		// TODO Auto-generated constructor stub
@@ -132,10 +142,17 @@ public class StudentCO
 			middleName = student.getMiddleName();
 			lastName = student.getLastName();
 			fatherName = student.getFatherName();
-			section = student.getSection();
+			section = student.getCategory().getCategory().getDescription();
 			classId = String.valueOf(student.getStandard().getName());
 			address = student.getAddress();
 			dateOfBirth = student.getDateOfBirth();
+			
+			System.out.println("section : "+section);
+			
+			for(StudentFee sf : student.getFees()){
+				fee+=sf.getId().getFee().getAmount();
+			}
+			System.out.println("Fee : "+fee);
 		}
 	
 	public Boolean validate(){
