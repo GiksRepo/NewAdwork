@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -31,11 +33,35 @@ public class StandardFee implements Serializable {
 	@EmbeddedId
     private StandardFeeId id;
 	
+	@ManyToOne
+    @MapsId("feeId")
+    private Fee fee;
+	
+	@ManyToOne
+    @MapsId("classId")
+    private Standard standard;
+	
 	@Column(name = "description")
 	private String description;
 
 	public StandardFeeId getId() {
 		return id;
+	}
+
+	public Fee getFee() {
+		return fee;
+	}
+
+	public void setFee(Fee fee) {
+		this.fee = fee;
+	}
+
+	public Standard getStandard() {
+		return standard;
+	}
+
+	public void setStandard(Standard standard) {
+		this.standard = standard;
 	}
 
 	public void setId(StandardFeeId id) {
