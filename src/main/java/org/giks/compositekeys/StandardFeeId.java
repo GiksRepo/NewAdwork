@@ -26,4 +26,34 @@ public class StandardFeeId implements Serializable {
 	@Column(name = "class_id")
 	private Long classId;
 
+	public StandardFeeId(Long feeId, Long classId) {
+		// TODO Auto-generated constructor stub
+		this.feeId = feeId;
+		this.classId = classId;
+	}
+	
+	
+	public Long getFeeId() {
+		return feeId;
+	}
+
+
+	public Long getClassId() {
+		return classId;
+	}
+
+
+	@Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof StandardFeeId)) return false;
+        StandardFeeId that = (StandardFeeId) o;
+        return Objects.equals(getFeeId(), that.getFeeId()) &&
+                Objects.equals(getClassId(), that.getClassId());
+    }
+	
+	@Override
+    public int hashCode() {
+        return Objects.hash(getFeeId(), getClassId());
+    }
 }

@@ -26,4 +26,37 @@ public class StudentFeeId implements Serializable {
 	@Column(name = "student_id")
 	private Long studentId;
 	
+	public StudentFeeId(Long feeId, Long studentId) {
+		// TODO Auto-generated constructor stub
+		this.feeId = feeId;
+		this.studentId = studentId;
+	}
+	
+	
+	
+	public Long getFeeId() {
+		return feeId;
+	}
+
+
+
+	public Long getStudentId() {
+		return studentId;
+	}
+
+
+
+	@Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof StudentFeeId)) return false;
+        StudentFeeId that = (StudentFeeId) o;
+        return Objects.equals(getFeeId(), that.getFeeId()) &&
+                Objects.equals(getStudentId(), that.getStudentId());
+    }
+	
+	@Override
+    public int hashCode() {
+        return Objects.hash(getFeeId(), getStudentId());
+    }
 }
