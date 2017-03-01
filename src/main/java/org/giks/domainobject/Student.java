@@ -1,13 +1,18 @@
 package org.giks.domainobject;
 
 import java.io.Serializable;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.giks.compositekeys.StudentFeeId;
 
 @Entity
 @Table(name = "student")
@@ -59,9 +64,21 @@ public class Student implements Serializable {
 	}
 
 	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name = "id")
+	@JoinColumn(name = "category_id")
 	private Reservation category;
 	
+	@OneToMany(fetch=FetchType.EAGER)
+	@JoinColumn(name = "student_id")
+	private Set<StudentFee> fees;
+	
+	public Set<StudentFee> getFees() {
+		return fees;
+	}
+
+	public void setFees(Set<StudentFee> fees) {
+		this.fees = fees;
+	}
+
 	public Long getAdmissionNo() {
 		return admissionNo;
 	}

@@ -36,26 +36,27 @@ public class StandardFeeId implements Serializable {
 		this.standard = standard;
 	}
 
-	public Fee getFeeId() {
+	
+	public Fee getFee() {
 		return fee;
 	}
 
-	public Standard getStandardId() {
+	public Standard getStandard() {
 		return standard;
 	}
-	
+
 	@Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof StandardFeeId)) return false;
         StandardFeeId that = (StandardFeeId) o;
-        return Objects.equals(getFeeId(), that.getFeeId()) &&
-                Objects.equals(getStandardId(), that.getStandardId());
+        return Objects.equals(getFee(), that.getFee()) &&
+                Objects.equals(getStandard(), that.getStandard());
     }
 	
 	@Override
     public int hashCode() {
-        return Objects.hash(getFeeId(), getStandardId());
+        return Objects.hash(getFee(), getStandard());
     }
 
 }
