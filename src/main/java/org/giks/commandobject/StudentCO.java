@@ -150,7 +150,7 @@ public class StudentCO
 			System.out.println("section : "+section);
 			
 			for(StudentFee sf : student.getFees()){
-				fee+=sf.getId().getFee().getAmount();
+				fee+=sf.getFee().getAmount();
 			}
 			System.out.println("Fee : "+fee);
 		}
