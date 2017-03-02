@@ -20,32 +20,34 @@ public class StudentFeeId implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	@ManyToOne
-	@JoinColumn(name = "fee_id")
-	private Fee feeId;
+	@Column(name = "fee_id")
+	private Long feeId;
 	
-	@ManyToOne
-	@JoinColumn(name = "student_id")
-	private Student studentId;
+	@Column(name = "student_id")
+	private Long studentId;
+	
+	public StudentFeeId(Long feeId, Long studentId) {
+		// TODO Auto-generated constructor stub
+		this.feeId = feeId;
+		this.studentId = studentId;
+	}
 	
 	public StudentFeeId() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public StudentFeeId(Fee classId, Student studentId) {
-		// TODO Auto-generated constructor stub
-		this.feeId = classId;
-		this.studentId = studentId;
-	}
-
-	public Fee getFeeId() {
+	public Long getFeeId() {
 		return feeId;
 	}
 
-	public Student getStudentId() {
+
+
+	public Long getStudentId() {
 		return studentId;
 	}
-	
+
+
+
 	@Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -59,5 +61,4 @@ public class StudentFeeId implements Serializable {
     public int hashCode() {
         return Objects.hash(getFeeId(), getStudentId());
     }
-
 }
