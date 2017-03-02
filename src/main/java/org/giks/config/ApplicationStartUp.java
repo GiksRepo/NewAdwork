@@ -1,9 +1,19 @@
 package org.giks.config;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import org.giks.domainobject.Enumeration;
+import org.giks.domainobject.Fee;
+import org.giks.domainobject.Reservation;
+import org.giks.domainobject.Standard;
+import org.giks.domainobject.Student;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,37 +32,66 @@ public class ApplicationStartUp
 			entityManagerFactory = Persistence.createEntityManagerFactory("feePaymentPortal");
 			sessionFactory = entityManagerFactory.unwrap(SessionFactory.class);
 			
-			/*Session session = sessionFactory.openSession();
+			Session session = sessionFactory.openSession();
 			Transaction transaction = session.beginTransaction();
 			transaction.begin();
 			
-			Users user = new Users();
-			user.setLoginId("Dpun");
-			user.setPassword("123");
-			session.persist(user);
+			Enumeration enumeration = new Enumeration();
+			enumeration.setEnumId("TUTION_FEE");
+			enumeration.setType("Fee");
+			enumeration.setDescription("Tution Fee");
+			session.persist(enumeration);
 			
-			UserRoles userRole = new UserRoles();
-			userRole.setUser(user);
-			userRole.setRole("ROLE_USER");
-			session.persist(userRole);
+			Enumeration enumeration2 = new Enumeration();
+			enumeration2.setEnumId("GENERAL");
+			enumeration2.setType("CATEGORY");
+			enumeration2.setDescription("General");
+			session.persist(enumeration2);
 			
-			Users user2 = new Users();
-			user2.setLoginId("Aman");
-			user2.setPassword("123");
-			session.persist(user2);
+			Enumeration enumeration3 = new Enumeration();
+			enumeration3.setEnumId("TRANSPORTATION_FEE");
+			enumeration3.setType("Fee");
+			enumeration3.setDescription("Transportation Fee");
+			session.persist(enumeration3);
 			
-			UserRoles userRole2 = new UserRoles();
-			userRole2.setUser(user2);
-			userRole2.setRole("ROLE_ADMIN");
-			session.persist(userRole2);
+			Reservation reservation = new Reservation();
+			reservation.setCategory(enumeration2);
+			reservation.setPercent(Byte.valueOf("10"));
+			session.persist(reservation);
 			
-			UserRoles userRole3 = new UserRoles();
-			userRole3.setUser(user2);
-			userRole3.setRole("ROLE_USER");
-			session.persist(userRole3);
+			Set<Fee> feesSet = new HashSet<>();
+			
+			Fee fee = new Fee();
+			fee.setAmount(8000L);
+			fee.setFeeType(enumeration);
+			session.persist(fee);
+			
+			Fee fee2 = new Fee();
+			fee2.setAmount(800L);
+			fee2.setFeeType(enumeration3);
+			session.persist(fee2);
+			
+			Standard standard = new Standard();
+			standard.setDescription("Class 1");
+			standard.setName("Class 1");
+			feesSet.add(fee);
+			standard.setFees(feesSet);
+			session.persist(standard);
+			
+			Student student = new Student();
+			student.setAdmissionNo(1L);
+			student.setFirstName("Aman");
+			student.setLastName("Nan");
+			student.setCategory(reservation);
+			student.setSection("A");
+			student.setFatherName("Fname");
+			student.setStandard(standard);
+			feesSet.add(fee2);
+			student.setFees(feesSet);
+			session.persist(student);
 						
 			transaction.commit();
-			session.close();*/
+			session.close();
 		}
 	}
 	

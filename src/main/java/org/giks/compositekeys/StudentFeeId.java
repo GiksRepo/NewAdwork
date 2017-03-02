@@ -32,7 +32,9 @@ public class StudentFeeId implements Serializable {
 		this.studentId = studentId;
 	}
 	
-	
+	public StudentFeeId() {
+		// TODO Auto-generated constructor stub
+	}
 	
 	public Long getFeeId() {
 		return feeId;

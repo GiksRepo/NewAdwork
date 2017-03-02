@@ -3,7 +3,6 @@ package org.giks.config.dao;
 import java.util.List;
 
 import org.giks.config.ApplicationStartUp;
-import org.giks.domainobject.UserRoles;
 import org.giks.domainobject.Users;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -16,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 interface UserAuthDao
 {
 	public Users getUserCredentials(String loginId);
-	public List <UserRoles> getUserRoles(Users user);
 }
 
 
@@ -63,33 +61,4 @@ public class UserAuthDaoImpl implements UserAuthDao
 		return user;
 	}
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List <UserRoles> getUserRoles(Users user) {
-		List <UserRoles> userRoles = null;
-		Session session = null;
-		try
-		{
-			SessionFactory sessionFactory = applicationStartUp.getSessionFactory();
-			session = sessionFactory.openSession();
-			Criteria criteria = session.createCriteria(Users.class);
-			criteria = session.createCriteria(UserRoles.class);
-			criteria.add(Restrictions.eq("user", user));
-			userRoles = (List<UserRoles>)criteria.list();
-		}
-		catch(Exception e)
-		{
-			logger.info("Error occured getUserRoles :"+e.getMessage());
-		}
-		finally
-		{
-			if(session != null)
-			{
-				session.flush();
-				session.close();
-			}
-		}
-		
-		return userRoles;
-	}
 }

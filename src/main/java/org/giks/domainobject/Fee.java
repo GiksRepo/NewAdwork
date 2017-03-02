@@ -1,14 +1,17 @@
 package org.giks.domainobject;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -38,9 +41,47 @@ public class Fee implements Serializable {
 	@Column(name = "amount")
 	private Long amount;
 	
+	/*@OneToMany(cascade=CascadeType.ALL)
+	@JoinTable(name="student_fees",
+	joinColumns={@JoinColumn(name="fee_id", referencedColumnName="fee_id")},
+	inverseJoinColumns={@JoinColumn(name="student_id", referencedColumnName="student_id")})
+	private List<Student> students;
+	
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinTable(name="standard_fees",
+	joinColumns={@JoinColumn(name="fee_id", referencedColumnName="fee_id")},
+	inverseJoinColumns={@JoinColumn(name="class_id", referencedColumnName="class_id")})
+	private List<Standard> standards;*/
+	
 	public Fee() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+
+	/*public List<Student> getStudents() {
+		return students;
+	}
+
+
+
+	public void setStudents(List<Student> students) {
+		this.students = students;
+	}
+
+
+
+	public List<Standard> getStandards() {
+		return standards;
+	}
+
+
+
+	public void setStandards(List<Standard> standards) {
+		this.standards = standards;
+	}
+*/
+
 
 	public Long getId() {
 		return id;

@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -40,12 +41,29 @@ public class Standard implements Serializable {
 	@JoinColumn(name = "class_id")
 	private Set<Student> students;  
 	
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinTable(name="standard_fees",
+	joinColumns={@JoinColumn(name="class_id", referencedColumnName="class_id")},
+	inverseJoinColumns={@JoinColumn(name="fee_id", referencedColumnName="fee_id")})
+	private Set<Fee> Fees;
+	
+	
+	
+
 	public Set<Student> getStudents() {
 		return students;
 	}
 
 	public void setStudents(Set<Student> students) {
 		this.students = students;
+	}
+
+	public Set<Fee> getFees() {
+		return Fees;
+	}
+
+	public void setFees(Set<Fee> fees) {
+		Fees = fees;
 	}
 
 	public Standard() {
