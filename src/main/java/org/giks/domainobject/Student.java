@@ -3,11 +3,13 @@ package org.giks.domainobject;
 import java.io.Serializable;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -67,15 +69,17 @@ public class Student implements Serializable {
 	@JoinColumn(name = "category_id")
 	private Reservation category;
 	
-	@OneToMany(fetch=FetchType.EAGER)
-	@JoinColumn(name = "student_id")
-	private Set<StudentFee> fees;
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinTable(name="student_fees",
+	joinColumns={@JoinColumn(name="student_id", referencedColumnName="student_id")},
+	inverseJoinColumns={@JoinColumn(name="fee_id", referencedColumnName="fee_id")})
+	private Set<Fee> fees;
 	
-	public Set<StudentFee> getFees() {
+	public Set<Fee> getFees() {
 		return fees;
 	}
 
-	public void setFees(Set<StudentFee> fees) {
+	public void setFees(Set<Fee> fees) {
 		this.fees = fees;
 	}
 

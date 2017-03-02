@@ -1,7 +1,11 @@
 package org.giks.commandobject;
 
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+
+import org.giks.domainobject.Fee;
 import org.giks.domainobject.Student;
-import org.giks.domainobject.StudentFee;
 import org.giks.viewobject.HomePageVO;
 import org.springframework.util.StringUtils;
 
@@ -16,7 +20,7 @@ public class StudentCO
 	private String dateOfBirth;
 	private String section;
 	private String classId;
-	private Long fee;
+	private Long fee = 0L;
 	
 	public String getClassId() {
 		return classId;
@@ -147,12 +151,16 @@ public class StudentCO
 			address = student.getAddress();
 			dateOfBirth = student.getDateOfBirth();
 			
-			System.out.println("section : "+section);
-			
-			for(StudentFee sf : student.getFees()){
-				fee+=sf.getId().getFee().getAmount();
+			Set<Fee> fees = new HashSet<>(student.getFees());
+			Iterator<Fee> it = fees.iterator();
+			while(it.hasNext())
+			{
+				Fee sf = it.next();
+				System.out.println("Fee "+sf.getClass());
+				fee += sf.getAmount();
 			}
-			System.out.println("Fee : "+fee);
+			
+			System.out.println("Total Fee "+fee);
 		}
 	
 	public Boolean validate(){
