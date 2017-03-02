@@ -86,7 +86,7 @@ public class ApplicationStartUp
 			student.setSection("A");
 			student.setFatherName("Fname");
 			student.setStandard(standard);
-		//	feesSet.add(fee2);
+			feesSet.add(fee2);
 			student.setFees(feesSet);
 			session.persist(student);
 						
