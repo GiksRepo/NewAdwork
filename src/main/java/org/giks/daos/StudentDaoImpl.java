@@ -3,15 +3,14 @@ package org.giks.daos;
 import org.giks.commandobject.StudentCO;
 import org.giks.config.ApplicationStartUp;
 import org.giks.domainobject.Student;
-import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 interface StudentDaoIn
 {
 	public StudentCO getStudentDetailsByAdmissionNo(StudentCO studentCO);
+	public StudentCO getStudentDetailsByname(StudentCO studentCO);
 }
 
 @Repository
@@ -32,10 +31,25 @@ public class StudentDaoImpl implements StudentDaoIn
 			 else
 				 studentCO = null;
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return studentCO;
+	}
+	
+	@Override
+	public StudentCO getStudentDetailsByname(StudentCO studentCO) 
+	{
+		String studentName = studentCO.getFirstName();
+		String fatherName = studentCO.getFatherName();
+		String section = studentCO.getSection();
+		String classId = studentCO.getClassId();
+		
+		try{
+			
+		}catch(Exception e){
+			
+		}
+		return null;
 	}
 
 }
