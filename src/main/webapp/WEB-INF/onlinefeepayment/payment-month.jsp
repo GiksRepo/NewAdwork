@@ -15,43 +15,25 @@
         <!-- this text will appear from Db -->	Admission No:${studentDetails.admissionNo } 
         </p>
 		
+								<form:form modelAttribute="studentDetails">
 		<div class="row">
 			<div class="col-md-12 col-xs-12">
 				<div class="mar-auto text-center">
-					<h3>Fee From 
+					<h3>From 
 						<div class="btn-group" id="myDropdown">
-							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-								Month
-								<span class="caret"></span>
+							<a class="btn dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
+								April
 							</a>
-							April
-							 <!-- <ul class="dropdown-menu">
-								<li><a href="#">January</a></li>
-								<li><a href="#">February</a></li>
-								<li><a href="#">March</a></li>
-								<li><a href="#">April</a></li>
-								<li> <a href="#">May </a></li>
-								<li> <a href="#">June</a> </li>
-								<li> <a href="#">July</a> </li>
-								<li> <a href="#">August</a> </li>
-								<li> <a href="#">September</a></li>
-								<li> <a href="#">October</a></li>
-								<li> <a href="#">November</a> </li>
-								<li> <a href="#">December</a></li>
-							</ul> -->
+							
 						</div>
 										
 										
 						To
 							
 						<div class="btn-group" id="myDropdown2">
-							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-								Month
-								<span class="caret"></span>
-							</a>
-							<form:form modelAttribute="studentDetails">
+							<a class="btn dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
 								<form:label path=""></form:label>
-								<form:select path="admissionNo">
+								<form:select path="admissionNo" style="color:blue;">
 									<form:option value="1">January</form:option>
 									<form:option value="2">February</form:option>
 									<form:option value="3">March</form:option>
@@ -65,30 +47,25 @@
 									<form:option value="11">November</form:option>
 									<form:option value="12">December</form:option>
 								</form:select>
-							</form:form>
-							<!-- <ul class="dropdown-menu">
-								<li><a href="#">January</a></li>
-								<li><a href="#">February</a></li>
-								<li><a href="#">March</a></li>
-								<li><a href="#">April</a></li>
-								<li> <a href="#">May </a></li>
-								<li> <a href="#">June</a> </li>
-								<li> <a href="#">July</a> </li>
-								<li> <a href="#">August</a> </li>
-								<li> <a href="#">September</a></li>
-								<li> <a href="#">October</a></li>
-								<li> <a href="#">November</a> </li>
-								<li> <a href="#">December</a></li>
-							</ul> -->
+							</a>
 						</div>
 					</h3>
 			</div>
 		</div>
 	</div>
                           
-    <p class="text-center">
+    <%-- <p class="text-center">
     	<a href="" class="btn btn-success btn-outline-rounded green"> <spring:message code="common.next" text="Next"/> </a>
-    </p>           
+    </p>   --%>
+    <div class="form-group text-center">
+								<%-- <a href="javascript:void(0);" id="searchStudentBtn" class="btn btn-success btn-outline-rounded green"> <spring:message code="home.student.search" text="Search Student Infromation"/> <span style="margin-left:10px;" class="glyphicon glyphicon-send"></span></a> --%>
+								<input type="submit" id="searchStudentBtn" value="<spring:message code="common.next" text="Next"/>" class="btn btn-success btn-outline-rounded green">
+								<div id="loadingDiv" style="display:none;">
+									<spring:url value="resources/assets/images/ajax_loader.gif" var="loadingImage"/>
+									<img src="${loadingImage }"/>
+								</div>
+							</div>         
   </div>
   <div class="clearfix"></div>                        
 </div>
+							</form:form>
