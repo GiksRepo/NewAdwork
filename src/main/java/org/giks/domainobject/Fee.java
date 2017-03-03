@@ -40,7 +40,11 @@ public class Fee implements Serializable {
 	@Column(name = "amount")
 	private Long amount;
 	
-	@OneToMany(cascade=CascadeType.ALL)
+	public Fee() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	/*@OneToMany(cascade=CascadeType.ALL)
 	@JoinTable(name="student_fees",
 	joinColumns={@JoinColumn(name="fee_id", referencedColumnName="fee_id")},
 	inverseJoinColumns={@JoinColumn(name="student_id", referencedColumnName="student_id")})
@@ -64,9 +68,6 @@ public class Fee implements Serializable {
 
 
 
-	public Fee() {
-		// TODO Auto-generated constructor stub
-	}
 	
 	
 	
@@ -78,7 +79,7 @@ public class Fee implements Serializable {
 
 	public void setStudents(Set<Student> students) {
 		this.students = students;
-	}
+	}*/
 
 
 
