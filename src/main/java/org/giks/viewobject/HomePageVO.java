@@ -1,5 +1,7 @@
 package org.giks.viewobject;
 
+import java.util.Map;
+
 public class HomePageVO 
 {
 	private String admissionNo;
@@ -8,7 +10,15 @@ public class HomePageVO
 	private String studentClass;
 	private String studentSection;
 	private String error = "";
+	private Map<Long,String> standardList;
 	
+	
+	public Map<Long, String> getStandardList() {
+		return standardList;
+	}
+	public void setStandardList(Map<Long, String> standardList) {
+		this.standardList = standardList;
+	}
 	public String getError() {
 		return error;
 	}
