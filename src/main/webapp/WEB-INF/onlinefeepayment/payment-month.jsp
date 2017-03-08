@@ -20,14 +20,7 @@
 			<div class="col-md-12 col-xs-12">
 				<div class="mar-auto text-center">
 					<h3>From 
-						<div class="btn-group" id="myDropdown">
-							<a class="btn dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
 								April
-							</a>
-							
-						</div>
-										
-										
 						To
 							
 						<div class="btn-group" id="myDropdown2">
