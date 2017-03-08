@@ -1,5 +1,6 @@
 package org.giks.services;
 
+
 import org.giks.commandobject.StudentCO;
 import org.giks.daos.StudentDaoImpl;
 import org.giks.serviceInterfaces.StudentServiceIn;
@@ -36,12 +37,25 @@ public class StudentService implements StudentServiceIn
 				}
 			}else
 			{
-				homePageVO.setError("under construction");
+				studentCO.setClassId("1");
+				if(studentDaoImpl.getStudentDetailsByname(studentCO).isEmpty())
+					homePageVO.setError("Record not found");
+				else if(studentDaoImpl.getStudentDetailsByname(studentCO).size()>1)
+					homePageVO.setError("Multiple Record found.Please Provide Student Admission No.");
+				else
+				{
+					studentCO = studentDaoImpl.getStudentDetailsByname(studentCO).get(0);
+					
+					homePageVO.setAdmissionNo(String.valueOf(studentCO.getAdmissionNo()));
+					homePageVO.setStudentName(studentCO.getFirstName()+" "+studentCO.getLastName());
+					homePageVO.setFatherName(studentCO.getFatherName());
+					homePageVO.setStudentClass(studentCO.getClassId());
+					homePageVO.setStudentSection(studentCO.getSection());
+				}
 			}
 		}
 		else
 			homePageVO.setError("Validation failed.");
 		return homePageVO;
 	}
-
 }
