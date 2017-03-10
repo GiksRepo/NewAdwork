@@ -1,6 +1,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <div class="tab-content">
 <div class="tab-pane fade in active" id="profile">
 <div class="col-md-12 col-xs-12">
@@ -8,7 +9,7 @@
 							  		<div class="alert alert-danger">
 	  									<strong>${studentDetails.error}</strong>
 									</div>
-							  </c:if>
+							  </c:if> 
 						</div>
 	<h3 class="head text-center"><spring:message code="payment-month.title" text="Select Month"/> </h3>
     	<p class="narrow text-center">
@@ -19,26 +20,18 @@
 		<div class="row">
 			<div class="col-md-12 col-xs-12">
 				<div class="mar-auto text-center">
+					<c:set var="months" value="${['select','January','February','March','April','May','June','July','August','September','October','November','December']}"></c:set>
 					<h3>From 
-								April
+							<c:out value="${months[studentDetails.fromMonth]}"></c:out>	
 						To
 							
 						<div class="btn-group" id="myDropdown2">
 							<a class="btn dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
-								<form:label path=""></form:label>
-								<form:select path="admissionNo" style="color:blue;">
-									<form:option value="1">January</form:option>
-									<form:option value="2">February</form:option>
-									<form:option value="3">March</form:option>
-									<form:option value="4">April</form:option>
-									<form:option value="5">May</form:option>
-									<form:option value="6">June</form:option>
-									<form:option value="7">July</form:option>
-									<form:option value="8">August</form:option>
-									<form:option value="9">September</form:option>
-									<form:option value="10">October</form:option>
-									<form:option value="11">November</form:option>
-									<form:option value="12">December</form:option>
+								<%-- <form:label path=""></form:label> --%>
+								<form:select path="toMonth" style="color:blue;">
+									<c:forEach var="month" items="${months}" varStatus="loop">
+   										 <form:option value="${loop.index}">${month }</form:option>
+									</c:forEach>
 								</form:select>
 							</a>
 						</div>

@@ -65,9 +65,9 @@ public class StudentDaoImpl implements StudentDaoIn
 			session.beginTransaction();
 
 			Criteria criteria = session.createCriteria(Student.class);
-			Criterion conditions1 = Restrictions.like("firstName", studentName);
-			Criterion conditions2 = Restrictions.like("fatherName", fatherName);
-			Criterion conditions3 = Restrictions.like("section", section);
+			Criterion conditions1 = Restrictions.ilike("firstName", studentName);
+			Criterion conditions2 = Restrictions.ilike("fatherName", fatherName);
+			Criterion conditions3 = Restrictions.ilike("section", section);
 			
 			
 			criteria.add(Restrictions.conjunction().add(conditions1).add(conditions2).add(conditions3));

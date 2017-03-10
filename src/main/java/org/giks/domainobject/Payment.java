@@ -45,7 +45,7 @@ public class Payment implements Serializable {
 	private Long amountPaid;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "enum_id")
+	@JoinColumn(name = "status")
 	private Enumeration status;
 	
 	@Column(name = "payment_date")

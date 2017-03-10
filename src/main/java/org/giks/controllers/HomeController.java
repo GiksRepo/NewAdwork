@@ -5,8 +5,11 @@ package org.giks.controllers;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.giks.serviceInterfaces.FeeServiceIn;
 import org.giks.serviceInterfaces.StudentServiceIn;
+import org.giks.services.FeeService;
 import org.giks.viewobject.HomePageVO;
+import org.giks.viewobject.PayMonthVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +27,8 @@ public class HomeController
 	
 	@Autowired
 	private StudentServiceIn studentService;
+	@Autowired
+	private FeeServiceIn feeService;
 		
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(ModelMap model) 
@@ -37,6 +42,47 @@ public class HomeController
 	
 	@RequestMapping(value = "/payment-month", method = RequestMethod.GET)
 	public String paymentMonth(ModelMap model, HttpServletRequest request)
+	{	
+		System.out.println("payMonth");
+		HttpSession session = request.getSession();
+		String studentAdmissionNO = (String) session.getAttribute("studentAdmissionNO");
+		PayMonthVO payMonthVo = new PayMonthVO();
+		if(!StringUtils.isEmpty(studentAdmissionNO))
+		{
+			System.out.println("1");
+			payMonthVo.setAdmissionNo(studentAdmissionNO);
+			try{
+			payMonthVo = feeService.getFromFee(payMonthVo);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			System.out.println("34");
+			if(!StringUtils.isEmpty(payMonthVo.getError()))
+			{
+				System.out.println("2");
+				model.addAttribute("studentDetails", payMonthVo);
+				model.addAttribute("curl", "paymentMonth");
+				return "PaymentMonth";
+			}else
+			{
+				System.out.println("3");
+				model.addAttribute("studentDetails", payMonthVo);
+				model.addAttribute("curl", "paymentMonth");
+				return "PaymentMonth";
+			}
+		}
+		else
+		{
+			System.out.println("4");
+			payMonthVo.setError("Session expired!");
+			model.addAttribute("home", payMonthVo);
+			model.addAttribute("curl", "home");
+			return "Home";
+		}
+	}
+	
+	@RequestMapping(value = "/payment-month", method = RequestMethod.POST)
+	public String findPayment(ModelMap model, HttpServletRequest request)
 	{
 		HttpSession session = request.getSession();
 		String studentAdmissionNO = (String) session.getAttribute("studentAdmissionNO");
