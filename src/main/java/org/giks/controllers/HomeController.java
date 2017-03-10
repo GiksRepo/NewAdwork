@@ -6,6 +6,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.giks.serviceInterfaces.FeeServiceIn;
+
+import org.giks.daos.StandardDaoImpl;
+import org.giks.serviceInterfaces.StandardServiceIn;
 import org.giks.serviceInterfaces.StudentServiceIn;
 import org.giks.services.FeeService;
 import org.giks.viewobject.HomePageVO;
@@ -27,14 +30,19 @@ public class HomeController
 	
 	@Autowired
 	private StudentServiceIn studentService;
+
 	@Autowired
 	private FeeServiceIn feeService;
+	
+	@Autowired
+	private StandardServiceIn standardService;
+
 		
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(ModelMap model) 
 	{
 		HomePageVO home = new HomePageVO();
-		
+		home.setStandardList(standardService.getAllStandard());
 		model.addAttribute("home", home);
 		model.addAttribute("curl", "home");
 		return "Home";
@@ -94,6 +102,7 @@ public class HomeController
 			if(!StringUtils.isEmpty(homepageVo.getError()))
 			{
 				session.invalidate();
+				homepageVo.setStandardList(standardService.getAllStandard());
 				homepageVo.setError("Session expired!");
 				model.addAttribute("home", homepageVo);
 				model.addAttribute("curl", "home");
@@ -108,6 +117,7 @@ public class HomeController
 		else
 		{
 			homepageVo.setError("Session expired!");
+			homepageVo.setStandardList(standardService.getAllStandard());
 			model.addAttribute("home", homepageVo);
 			model.addAttribute("curl", "home");
 			return "Home";
@@ -135,6 +145,7 @@ public class HomeController
 			if(!StringUtils.isEmpty(homepageVo.getError()))
 			{
 				session.invalidate();
+				homepageVo.setStandardList(standardService.getAllStandard());
 				homepageVo.setError("Session expired!");
 				model.addAttribute("home", homepageVo);
 				model.addAttribute("curl", "home");
@@ -149,6 +160,7 @@ public class HomeController
 		else
 		{
 			homepageVo.setError("Session expired!");
+			homepageVo.setStandardList(standardService.getAllStandard());
 			model.addAttribute("home", homepageVo);
 			model.addAttribute("curl", "home");
 			return "Home";
@@ -179,6 +191,7 @@ public class HomeController
 		{
 			HttpSession session = request.getSession();
 			session.invalidate();
+			homepageVo.setStandardList(standardService.getAllStandard());
 			model.addAttribute("home", homepageVo);
 			model.addAttribute("curl", "home");
 			return "Home";

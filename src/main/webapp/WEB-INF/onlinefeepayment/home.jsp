@@ -75,7 +75,11 @@
 								<div class="cols-sm-10">
 									<div class="input-group">
 										<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-										<form:input placeholder="Enter student class" path="studentClass" type="text" class="form-control"/>
+										<%-- <form:select path="studentClass" items="standardList" class="form-control"/> --%>
+										<form:select path="studentClass" class="form-control">
+											<form:option value="">Select Standard</form:option>
+										    <form:options items="${home.standardList}" />
+										</form:select>
 									</div>
 								</div>
 							</div>
