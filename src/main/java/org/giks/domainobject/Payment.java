@@ -52,10 +52,10 @@ public class Payment implements Serializable {
 	private Date paymentDate;
 	
 	@Column(name = "payment_to")
-	private Date paymentTo;
+	private Integer paymentTo;
 	
 	@Column(name = "payment_from")
-	private Date paymentForm;
+	private Integer paymentForm;
 
 	public Long getId() {
 		return Id;
@@ -103,6 +103,22 @@ public class Payment implements Serializable {
 
 	public void setPaymentDate(Date paymentDate) {
 		this.paymentDate = paymentDate;
+	}
+
+	public Integer getPaymentTo() {
+		return paymentTo;
+	}
+
+	public void setPaymentTo(Integer paymentTo) {
+		this.paymentTo = paymentTo;
+	}
+
+	public Integer getPaymentForm() {
+		return paymentForm;
+	}
+
+	public void setPaymentForm(Integer paymentForm) {
+		this.paymentForm = paymentForm;
 	}
 	
 	
