@@ -2,6 +2,7 @@ package org.giks.controllers;
 
 
 
+import javax.management.RuntimeErrorException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -19,9 +20,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class HomeController 
@@ -40,7 +43,7 @@ public class HomeController
 		
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(ModelMap model) 
-	{
+	{		
 		HomePageVO home = new HomePageVO();
 		home.setStandardList(standardService.getAllStandard());
 		model.addAttribute("home", home);
@@ -218,5 +221,13 @@ public class HomeController
 	
 	private void destroySession(HttpServletRequest request){
 		
+	}
+	
+	@ExceptionHandler({Exception.class})
+	public ModelAndView handleException(Exception exception)
+	{
+		ModelAndView model = new ModelAndView("Exception");
+		model.addObject("errorMessage", exception.getMessage());
+		return model;
 	}
 }

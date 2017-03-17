@@ -56,27 +56,27 @@
 	<error-page>
 	    <!-- Missing login -->
 	    <error-code>401</error-code>
-	    <location>/error/401</location>
+	    <location>/error/405</location>
 	</error-page>
 	<error-page>
 	    <!-- Forbidden directory listing -->
 	    <error-code>403</error-code>
-	   <location>/error/403</location>
+	   <location>/error/405</location>
 	</error-page>
 	<error-page>
 	    <!-- Missing resource -->
 	    <error-code>404</error-code>
-	    <location>/error/404</location>
+	    <location>/error/405</location>
 	</error-page>
 	<error-page>
 	    <!-- Uncaught exception -->
 	    <error-code>500</error-code>
-	    <location>/error/500</location>
+	    <location>/error/405</location>
 	</error-page>
 	<error-page>
 	    <!-- Unsupported servlet method -->
 	    <error-code>503</error-code>
-	    <location>/error/503</location>
+	    <location>/error/405</location>
 	</error-page>
 	<welcome-file-list>
 		<welcome-file>/</welcome-file>

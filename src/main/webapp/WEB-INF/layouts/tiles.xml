@@ -37,4 +37,9 @@
 		<put-attribute name="PageTitle" value="Error"/> 
 		<put-attribute name="content" value="/WEB-INF/common/error.jsp"/> 
 	</definition>
+	
+	<definition name="Exception" template="/WEB-INF/common/exceptiontemplate.jsp"> 
+		<put-attribute name="PageTitle" value="Exception"/> 
+		<put-attribute name="content" value="/WEB-INF/common/exception.jsp"/> 
+	</definition>
 </tiles-definitions>
