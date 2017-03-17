@@ -54,12 +54,11 @@ public class HomeController
 	@RequestMapping(value = "/payment-month", method = RequestMethod.GET)
 	public String paymentMonth(ModelMap model, HttpServletRequest request)
 	{	
-		System.out.println("payMonth");
 		HttpSession session = request.getSession();
 		String studentAdmissionNO = (String) session.getAttribute("studentAdmissionNO");
-		PayMonthVO payMonthVo = new PayMonthVO();
 		if(!StringUtils.isEmpty(studentAdmissionNO))
 		{
+			PayMonthVO payMonthVo = new PayMonthVO();
 			System.out.println("1");
 			payMonthVo.setAdmissionNo(studentAdmissionNO);
 			try{
@@ -85,8 +84,9 @@ public class HomeController
 		else
 		{
 			System.out.println("4");
-			payMonthVo.setError("Session expired!");
-			model.addAttribute("home", payMonthVo);
+			HomePageVO homePageVO = new HomePageVO();
+			homePageVO.setError("Session expired!");
+			model.addAttribute("home", homePageVO);
 			model.addAttribute("curl", "home");
 			return "Home";
 		}
