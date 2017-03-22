@@ -31,7 +31,7 @@ public class ApplicationStartUp
 		{
 			entityManagerFactory = Persistence.createEntityManagerFactory("feePaymentPortal");
 			sessionFactory = entityManagerFactory.unwrap(SessionFactory.class);
-			
+		
 			Session session = sessionFactory.openSession();
 			Transaction transaction = session.beginTransaction();
 			transaction.begin();
@@ -82,14 +82,14 @@ public class ApplicationStartUp
 			Standard standard2 = new Standard();
 			standard2.setDescription("Class 2");
 			standard2.setName("Class 2");
-			//standard2.setFees(feesSet);
+			standard2.setFees(feesSet);
 			session.persist(standard2);
 			
-			/*Standard standard3 = new Standard();
+			Standard standard3 = new Standard();
 			standard3.setDescription("Class 3");
 			standard3.setName("Class 3");
 			standard3.setFees(feesSet);
-			session.persist(standard3);*/
+			session.persist(standard3);
 			
 			Student student = new Student();
 			student.setAdmissionNo(1L);
@@ -104,6 +104,7 @@ public class ApplicationStartUp
 						
 			transaction.commit();
 			session.close();
+			
 		}
 	}
 	
