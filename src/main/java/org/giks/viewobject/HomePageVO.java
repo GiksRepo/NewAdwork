@@ -12,7 +12,6 @@ public class HomePageVO
 	private String error = "";
 	private Map<Long,String> standardList;
 	
-	
 	public Map<Long, String> getStandardList() {
 		return standardList;
 	}

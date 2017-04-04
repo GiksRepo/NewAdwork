@@ -9,7 +9,7 @@
 	  									<strong>${home.error}</strong>
 									</div>
 							  </c:if>
-						</div>
+						</div> 
 						 
 						 
 
@@ -40,7 +40,7 @@
 								<div class="cols-sm-10">
 									<div class="input-group">
 										<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-										<form:input placeholder="Enter student admission no" path="admissionNo" type="text" class="form-control" value = "${studentAdmissionNO}"/>
+										<form:input placeholder="Enter student admission no" path="admissionNo" type="text" class="form-control" value = "${studentAdmissionNO}" autofocus="autofocus"/>
 									</div>
 								</div>
 							</div>

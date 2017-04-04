@@ -30,7 +30,7 @@
 										<%-- <form:label path=""></form:label> --%>
 										<form:select path="toMonth" style="color:blue;">
 											<c:forEach var="month" items="${months}" varStatus="loop">
-												<c:if test="${loop.index gt studentDetails.fromMonth - 3}">
+												<c:if test="${loop.index ge studentDetails.fromMonth - 3}">
 		   											 <form:option value="${loop.index + 3}">${month }</form:option>
 		   										</c:if>
 											</c:forEach>
@@ -51,9 +51,21 @@
 										<div id="loadingDiv" style="display:none;">
 											<spring:url value="resources/assets/images/ajax_loader.gif" var="loadingImage"/>
 											<img src="${loadingImage }"/>
-										</div>
+										</div><div id="totalDiv"><b>Total selected months :</b> <span id = "totalMonths" Style="color:blue;"></span></div>
 									</div>         
 		  </div>
 		  <div class="clearfix"></div>                        
 		</div>
 </form:form>
+
+<script>
+	var fromMonth = parseInt(${studentDetails.fromMonth});
+	var toMonth = parseInt($('#toMonth').val());
+	var monthsToPay = (toMonth - fromMonth) + 1;
+	$('#totalMonths').text(monthsToPay);
+	$('#toMonth').on('change', function(){
+		toMonth = parseInt($(this).val());
+		monthsToPay = (toMonth - fromMonth) + 1;
+		$('#totalMonths').text(monthsToPay);
+	});
+</script>

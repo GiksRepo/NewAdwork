@@ -12,6 +12,7 @@ import org.giks.daos.StandardDaoImpl;
 import org.giks.serviceInterfaces.StandardServiceIn;
 import org.giks.serviceInterfaces.StudentServiceIn;
 import org.giks.services.FeeService;
+import org.giks.viewobject.FeeVO;
 import org.giks.viewobject.HomePageVO;
 import org.giks.viewobject.PayMonthVO;
 import org.slf4j.Logger;
@@ -42,8 +43,10 @@ public class HomeController
 
 		
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(ModelMap model) 
-	{		
+	public String home(ModelMap model, HttpServletRequest request) 
+	{	
+		System.out.println("cont : "+studentService.getAcademicSession());
+		request.getSession(true).setAttribute("academicSession", studentService.getAcademicSession());;
 		HomePageVO home = new HomePageVO();
 		home.setStandardList(standardService.getAllStandard());
 		model.addAttribute("home", home);
@@ -59,23 +62,19 @@ public class HomeController
 		if(!StringUtils.isEmpty(studentAdmissionNO))
 		{
 			PayMonthVO payMonthVo = new PayMonthVO();
-			System.out.println("1");
 			payMonthVo.setAdmissionNo(studentAdmissionNO);
 			try{
 			payMonthVo = feeService.getFromFee(payMonthVo);
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-			System.out.println("34");
 			if(!StringUtils.isEmpty(payMonthVo.getError()))
 			{
-				System.out.println("2");
 				model.addAttribute("studentDetails", payMonthVo);
 				model.addAttribute("curl", "paymentMonth");
 				return "PaymentMonth";
 			}else
 			{
-				System.out.println("3");
 				model.addAttribute("studentDetails", payMonthVo);
 				model.addAttribute("curl", "paymentMonth");
 				return "PaymentMonth";
@@ -83,7 +82,6 @@ public class HomeController
 		}
 		else
 		{
-			System.out.println("4");
 			HomePageVO homePageVO = new HomePageVO();
 			homePageVO.setError("Session expired!");
 			model.addAttribute("home", homePageVO);
@@ -93,32 +91,42 @@ public class HomeController
 	}
 	
 	@RequestMapping(value = "/payment-month", method = RequestMethod.POST)
-	public String findPayment(ModelMap model, HttpServletRequest request)
+	public String findPayment(ModelMap model, @ModelAttribute PayMonthVO payMonthVo, HttpServletRequest request)
 	{
 		HttpSession session = request.getSession();
 		String studentAdmissionNO = (String) session.getAttribute("studentAdmissionNO");
-		HomePageVO homepageVo = new HomePageVO();
 		if(!StringUtils.isEmpty(studentAdmissionNO))
 		{
-			homepageVo.setAdmissionNo(studentAdmissionNO);
-			homepageVo = studentService.getStudentDetails(homepageVo); 
-			if(!StringUtils.isEmpty(homepageVo.getError()))
+			payMonthVo.setAdmissionNo(studentAdmissionNO);
+			FeeVO feeVO = feeService.getAllFees(payMonthVo); 
+			if(!StringUtils.isEmpty(feeVO.getError()))
 			{
-				session.invalidate();
-				homepageVo.setStandardList(standardService.getAllStandard());
-				homepageVo.setError("Session expired!");
-				model.addAttribute("home", homepageVo);
-				model.addAttribute("curl", "home");
-				return "Home";
-			}else
-			{
-				model.addAttribute("studentDetails", homepageVo);
+				payMonthVo.setError(feeVO.getError());
+				model.addAttribute("studentDetails", payMonthVo);
 				model.addAttribute("curl", "paymentMonth");
 				return "PaymentMonth";
+			}else
+			{
+				try{
+				String toMonth = (String) session.getAttribute("toMonthSession");
+				String toMonthUI = payMonthVo.getToMonth() + "";
+				if(StringUtils.isEmpty(toMonth))
+					session.setAttribute("toMonthSession", toMonthUI);
+				else{
+					if(!toMonthUI.equalsIgnoreCase(toMonth))
+						session.setAttribute("toMonthSession", toMonthUI);
+				}
+				model.addAttribute("studentDetails", feeVO);
+				model.addAttribute("curl", "studentFees");
+				}catch (Exception e) {
+					e.printStackTrace();
+				}
+				return "StudentFees";
 			}
 		}
 		else
 		{
+			HomePageVO homepageVo = new HomePageVO();
 			homepageVo.setError("Session expired!");
 			homepageVo.setStandardList(standardService.getAllStandard());
 			model.addAttribute("home", homepageVo);
@@ -128,11 +136,46 @@ public class HomeController
 	}
 	
 	@RequestMapping(value = "/student-fees", method = RequestMethod.GET)
-	public String getStudentFees(ModelMap model)
+	public String getStudentFees(ModelMap model, HttpServletRequest request)
 	{
-		
-		model.addAttribute("curl", "studentFees");
-		return "StudentFees";
+		try{
+		PayMonthVO payMonthVO = new PayMonthVO();
+		HttpSession session = request.getSession();
+		String studentAdmissionNO = (String) session.getAttribute("studentAdmissionNO");
+		String toMonth = (String) session.getAttribute("toMonthSession");
+		payMonthVO.setAdmissionNo(studentAdmissionNO);
+		FeeVO feeVO = new FeeVO();
+		if(!StringUtils.isEmpty(studentAdmissionNO))
+		{
+			if(!StringUtils.isEmpty(toMonth)){
+				payMonthVO.setToMonth(Integer.valueOf(toMonth));
+				feeVO = feeService.getAllFees(payMonthVO);
+				if(!StringUtils.isEmpty(feeVO.getError()))
+				{
+					System.out.println("err : "+feeVO.getError());
+					payMonthVO.setError(feeVO.getError());
+					payMonthVO.setFromMonth(feeVO.getFromMonth());
+					model.addAttribute("studentDetails", feeVO);
+					model.addAttribute("curl", "StudentFees");
+					return "StudentFees";
+				}
+			}
+			model.addAttribute("studentDetails", feeVO);
+			model.addAttribute("curl", "studentFees");
+			return "StudentFees";
+		}
+		else
+		{
+			HomePageVO homePageVO = new HomePageVO();
+			homePageVO.setError("Session expired!");
+			model.addAttribute("home", homePageVO);
+			model.addAttribute("curl", "home");
+			return "Home";
+		}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return "Home";
 	}
 	
 	@RequestMapping(value = "/student-details", method = RequestMethod.GET)
@@ -226,8 +269,9 @@ public class HomeController
 	@ExceptionHandler({Exception.class})
 	public ModelAndView handleException(Exception exception)
 	{
+		exception.printStackTrace();
 		ModelAndView model = new ModelAndView("Exception");
-		model.addObject("errorMessage", exception.getMessage());
+		model.addObject("errorMessage", exception.getCause());
 		return model;
 	}
 }

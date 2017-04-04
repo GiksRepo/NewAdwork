@@ -2,12 +2,41 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="tab-content">
 					<div class="tab-pane fade in active" id="messages">
+					<div class="col-md-12 col-xs-12">
+							  <c:if test="${not empty studentDetails.error}">
+							  		<div class="alert alert-danger">
+	  									<strong>${studentDetails.error}</strong>
+									</div>
+							  </c:if> 
+						</div>
                           <h3 class="head text-center"> <spring:message code="student-fee.title" text="Fee Details"/> </h3>
                           <div class="col-md-12 col-xs-12">
 								<div class="mar-auto text-center">
 <!-- Student Fee Details -->
 									<div id="data_fees" class="col-md-12 col-sm-12 col-xs-12 table_fee">
-											<div class="divdata">
+											
+										<c:choose>
+										    <c:when test="${studentDetails.fees != null}">
+										        <c:forEach var="fee" items="${studentDetails.fees}" varStatus="loop">
+		   											 <div class="divdata">
+														<div class="col-md-4 col-sm-8 col-xs-8">
+															<span style="font-weight:bold">${fee.key}</span>
+														</div>
+														<div class="col-md-4 col-sm-6 col-xs-12">
+															<i class="glyphicon fa fa-inr"></i><span> ${fee.value}</spans>
+														</div>
+													</div>
+												</c:forEach>
+										    </c:when>    
+										    <c:otherwise>
+										        <span style="font-weight:bold">No fees to display.</span>
+										        <br />
+										    </c:otherwise>
+										</c:choose>
+											
+											
+											
+											<%-- <div class="divdata">
 												<div class="col-md-4 col-sm-8 col-xs-8">
 													<span style="font-weight:bold"><spring:message code="student-fee.student.admissionFee" text="Admission Fee"/> </span>
 												</div>
@@ -71,7 +100,7 @@
 													<span>27250 Rs.</span>
 												</div>
 											</div>
-										</div >
+										</div > --%>
 									<!--Student Fee Details end -->
 									
 									</div>

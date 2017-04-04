@@ -6,4 +6,5 @@ import org.giks.viewobject.HomePageVO;
 public interface StudentServiceIn 
 {
 	public HomePageVO getStudentDetails(HomePageVO homePageVO);
+	public String getAcademicSession();
 }

@@ -54,6 +54,12 @@ public class ApplicationStartUp
 			enumeration3.setDescription("Transportation Fee");
 			session.persist(enumeration3);
 			
+			Enumeration enumeration4 = new Enumeration();
+			enumeration4.setEnumId("ADMISSION_FEE");
+			enumeration4.setType("Fee");
+			enumeration4.setDescription("Admission Fee");
+			session.persist(enumeration4);
+			
 			Reservation reservation = new Reservation();
 			reservation.setCategory(enumeration2);
 			reservation.setPercent(Byte.valueOf("10"));
@@ -71,11 +77,15 @@ public class ApplicationStartUp
 			fee2.setFeeType(enumeration3);
 			session.persist(fee2);
 			
+			Fee fee3 = new Fee();
+			fee3.setAmount(1000L);
+			fee3.setFeeType(enumeration4);
+			session.persist(fee3);
+			
 			Standard standard = new Standard();
 			standard.setDescription("Class 1");
 			standard.setName("Class 1");
-			feesSet.add(fee);
-			feesSet.add(fee2);
+			feesSet.add(fee3);
 			standard.setFees(feesSet);
 			session.persist(standard);
 			
@@ -91,6 +101,10 @@ public class ApplicationStartUp
 			standard3.setFees(feesSet);
 			session.persist(standard3);*/
 			
+			Set<Fee> feesSet2 = new HashSet<>();
+			feesSet2.add(fee);
+			feesSet2.add(fee2);
+			
 			Student student = new Student();
 			student.setAdmissionNo(1L);
 			student.setFirstName("Aman");
@@ -99,7 +113,7 @@ public class ApplicationStartUp
 			student.setSection("A");
 			student.setFatherName("Fname");
 			student.setStandard(standard);
-			student.setFees(feesSet);
+			student.setFees(feesSet2);
 			session.persist(student);
 						
 			transaction.commit();

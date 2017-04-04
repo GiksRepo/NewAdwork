@@ -56,6 +56,6 @@
 					</span> 
 				</a>
 			</li>
-                     
       </ul>
 </div>
+<div style="position:absolute;top: 31px;left:234px;"><i class="fa fa-inr"></i><h4>Session : ${sessionScope.academicSession}</h4></div>

@@ -1,12 +1,9 @@
 package org.giks.daos;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.giks.commandobject.StudentCO;
 import org.giks.config.ApplicationStartUp;
-import org.giks.domainobject.Standard;
 import org.giks.domainobject.Student;
 import org.giks.util.MiscUtility;
 import org.hibernate.Criteria;

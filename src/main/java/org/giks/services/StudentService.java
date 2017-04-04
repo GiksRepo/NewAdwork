@@ -1,6 +1,8 @@
 package org.giks.services;
 
 
+import java.util.Calendar;
+
 import org.giks.commandobject.StudentCO;
 import org.giks.daos.StudentDaoImpl;
 import org.giks.serviceInterfaces.StudentServiceIn;
@@ -58,4 +60,20 @@ public class StudentService implements StudentServiceIn
 			homePageVO.setError("Validation failed.");
 		return homePageVO;
 	}
+
+	@Override
+	public String getAcademicSession() {
+		Calendar now = Calendar.getInstance();
+		Integer currentMonth = now.get(Calendar.MONTH) + 1;
+		Integer currentYear = now.get(Calendar.YEAR);
+		Integer sessionStartYear = currentYear;
+		Integer sessionEndYear = currentYear;
+		if(currentMonth < 4)
+			--sessionStartYear;
+		else
+			++sessionEndYear;
+		System.out.println("session : "+sessionStartYear + " - " + sessionEndYear);
+		return sessionStartYear + " - " + sessionEndYear;
+	}
+	
 }

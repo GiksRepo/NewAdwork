@@ -10,7 +10,10 @@
     <title>
     	<tiles:getAsString name="PageTitle"/>
     </title>
-
+	<spring:url value="resources/assets/js/jquery.min.js" var="jqueryjs"/>	
+   <script src="${jqueryjs }"></script>
+   <spring:url value="resources/assets/js/bootstrap.min.js" var="bootstrapjs"/>	
+   <script src="${bootstrapjs }"></script>
     <!-- Bootstrap -->
 	<spring:url value="resources/assets/css/bootstrap.min.css" var="bootstrapCss"/>
 	<link rel="stylesheet" href="${bootstrapCss}">
@@ -36,10 +39,6 @@
          </div>
   	</div>
   <!--  </section> -->
-   <spring:url value="resources/assets/js/jquery.min.js" var="jqueryjs"/>	
-   <script src="${jqueryjs }"></script>
-   <spring:url value="resources/assets/js/bootstrap.min.js" var="bootstrapjs"/>	
-   <script src="${bootstrapjs }"></script>
    <spring:url value="resources/assets/js/custom.js" var="customjs"/>
    <script src="${customjs }"></script>
    <spring:url value="resources/assets/js/app.js" var="appjs"/>
